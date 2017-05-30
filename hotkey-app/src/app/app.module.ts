@@ -8,29 +8,26 @@ import { AppComponent } from './app.component';
 import { TraditionnalDesignComponent } from './components/traditionnal-design/traditionnal-design.component';
 import { ActionComponent } from './components/action/action.component';
 
-import { ActionsService } from './services/actions.service'
+import { ActionsService } from './services/actions.service';
+import { NavbarComponent } from './components/navbar/navbar.component'
+
+const appRoutes = [
+    { path: 'traditionnal', component: TraditionnalDesignComponent },
+    { path: '', redirectTo:'traditionnal', pathMatch: 'full' }
+];
 
 @NgModule({
   declarations: [
     AppComponent,
     TraditionnalDesignComponent,
-    ActionComponent
+    ActionComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
-    RouterModule.forRoot([
-    {
-      path: 'traditionnal',
-      component: TraditionnalDesignComponent
-    },
-    {
-      path: '',
-      redirectTo:'traditionnal',
-      pathMatch: 'full'
-    }
-    ])
+    RouterModule.forRoot(appRoutes)
   ],
   providers: [ActionsService],
   bootstrap: [AppComponent]
