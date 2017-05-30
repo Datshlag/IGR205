@@ -53,6 +53,9 @@ def spa():
         newUser = User(ip, newCookie)
         db.session.add(newUser)
         db.session.commit()
+        response = make_response("Yo")
+        response.set_cookie('id', newCookie)
+        return response
     response = make_response("Heeeelo")
     return response
 
