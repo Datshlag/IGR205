@@ -42,7 +42,7 @@ Everything in JSON
  
 * **Error Response:**
 
-  * **Code:** 418 I’m a teapot <br />
+  * **Code:** 401 Unauthorized <br />
     **Content:** `{ error : "No cookie" }`
 
 
