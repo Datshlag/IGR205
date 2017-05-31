@@ -1,14 +1,14 @@
 import { Injectable } from '@angular/core';
 
-import { Action } from '../models/action';
-import { ACTIONS } from '../models/mock-actions';
+import { Menu } from '../models/menu';
+import { MENUS } from '../models/mock-menus';
 
 @Injectable()
 export class ActionsService {
 
   constructor() { }
 
-  getActions(): Promise<Action[]> {
-    return Promise.resolve(ACTIONS);
+  getMenus(): Promise<Menu[]> {
+    return Promise.resolve(MENUS);
   }
 }
