@@ -5,7 +5,7 @@ import { Menu } from '../../models/menu';
 import { ActionsService } from '../../services/actions.service';
 
 @Component({
-  selector: 'menubar',
+  selector: 'app-menubar',
   templateUrl: './menubar.component.html',
   styleUrls: ['./menubar.component.css']
 })

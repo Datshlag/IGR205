@@ -1,0 +1,9 @@
+<p>
+  session-display works!
+</p>
+<div *ngIf="isStarted()">
+  <app-action></app-action>
+</div>
+ <div *ngIf="!isStarted()">
+   <button (click)="startSession()" type="button">Start session</button>
+ </div>
