@@ -5,11 +5,11 @@ import { Menu } from '../../models/menu';
 import { ActionsService } from '../../services/actions.service';
 
 @Component({
-  selector: 'app-traditionnal-design',
-  templateUrl: './traditionnal-design.component.html',
-  styleUrls: ['./traditionnal-design.component.css']
+  selector: 'menubar',
+  templateUrl: './menubar.component.html',
+  styleUrls: ['./menubar.component.css']
 })
-export class TraditionnalDesignComponent implements OnInit {
+export class MenuBarComponent implements OnInit {
   menus: Menu[] = [];
 
   constructor(private actionService: ActionsService) { }
