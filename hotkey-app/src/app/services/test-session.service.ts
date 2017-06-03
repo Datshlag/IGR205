@@ -23,6 +23,12 @@ export class TestSessionService {
     this.updateCurrentAction();
   }
 
+  stopSession(): void {
+    this.isStarted = false;
+    this.currentAction = undefined;
+    this.errorCount = 0;
+  }
+
   getActionSet(): void {
     this.actionsService.getMenus().then(menus => {
       for (let i=0; i <menus.length; i++) {
@@ -51,14 +57,8 @@ export class TestSessionService {
   checkEnd(): void {
     if (this.actionCount === this.maxAction) {
       this.sendResults();
-      this.reset();
+      this.stopSession();
     }
-  }
-
-  reset(): void {
-    this.isStarted = false;
-    this.currentAction = undefined;
-    this.errorCount = 0;
   }
 
   sendResults(): void  {

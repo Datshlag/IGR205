@@ -1,6 +1,7 @@
+<div *ngIf="!isStarted()">
+  <button (click)="startSession()" type="button">Start session</button>
+</div>
 <div *ngIf="isStarted()">
+  <button (click)="stopSession()" type="button">Stop session</button>
   <app-action [action]="testSessionService.currentAction"></app-action>
 </div>
- <div *ngIf="!isStarted()">
-   <button (click)="toggleStarted()" type="button">Start session</button>
- </div>
