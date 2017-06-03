@@ -2,19 +2,25 @@ import { Injectable } from '@angular/core';
 import { Action } from '../models/action';
 import { ActionsService } from './actions.service';
 
+const maxAction = 10;
+
 @Injectable()
 export class TestSessionService {
   isStarted: boolean = false;
   actionSet: Action[] = [];
-  currentTime: number = 0;
   currentAction: number = 0;
-  maxAction: number = 0;
+  actionCount: number = 0;
+  maxAction: number = maxAction;
   errorCount: number = 0;
+  startDate: Date;
 
   constructor(private actionsService: ActionsService) { }
 
-  toggleStarted(): void {
-    this.isStarted = !this.isStarted;
+  startSession(): void {
+    this.isStarted = true;
+    let d = new Date();
+    this.startDate = d;
+    this.updateCurrentAction();
   }
 
   getActionSet(): void {
@@ -22,14 +28,13 @@ export class TestSessionService {
       for (let i=0; i <menus.length; i++) {
         this.actionSet = this.actionSet.concat(menus[i].actions);
       }
-      // debug only
-      this.maxAction = this.actionSet.length;
     });
   }
 
   answer(action): void  {
     if(action === this.actionSet[this.currentAction]) {
-      this.currentAction += 1;
+      this.actionCount += 1;
+      this.updateCurrentAction();
       this.checkEnd();
       console.log('good answer');
     } else {
@@ -38,22 +43,29 @@ export class TestSessionService {
     }
   }
 
+  updateCurrentAction(): void {
+    this.currentAction = Math.floor(Math.random() * this.actionSet.length);
+    console.log(this.currentAction);
+  }
+
   checkEnd(): void {
-    if (this.currentAction === this.maxAction) {
+    if (this.actionCount === this.maxAction) {
       this.sendResults();
       this.reset();
     }
   }
 
   reset(): void {
-    this.toggleStarted();
+    this.isStarted = false;
     this.currentAction = 0;
     this.errorCount = 0;
   }
 
   sendResults(): void  {
+    let d = new Date();
     const result = {
-      errorCount: this.errorCount
+      errorCount: this.errorCount,
+      time: d.getTime() - this.startDate.getTime()
     };
     console.log(result);
   }

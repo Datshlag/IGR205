@@ -18,6 +18,6 @@ export class SessionDisplayComponent implements OnInit {
   }
 
   toggleStarted(): void {
-    this.testSessionService.toggleStarted();
+    this.testSessionService.startSession();
   }
 }
