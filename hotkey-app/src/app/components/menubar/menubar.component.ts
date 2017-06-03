@@ -3,6 +3,7 @@ import { Action } from '../../models/action';
 import { Menu } from '../../models/menu';
 
 import { ActionsService } from '../../services/actions.service';
+import { TestSessionService } from '../../services/test-session.service';
 
 @Component({
   selector: 'app-menubar',
@@ -12,17 +13,21 @@ import { ActionsService } from '../../services/actions.service';
 export class MenuBarComponent implements OnInit {
   menus: Menu[] = [];
 
-  constructor(private actionService: ActionsService) { }
+  constructor(private actionsService: ActionsService,
+             private testSessionService: TestSessionService) { }
 
   ngOnInit() {
     this.getMenus();
+    this.testSessionService.getActionSet();
   }
 
   onClick(action): void {
-    console.log(action);
+    if (this.testSessionService.isStarted) {
+      this.testSessionService.answer(action);
+    }
   }
 
   getMenus(): void {
-    this.actionService.getMenus().then(menus => this.menus = menus);
+    this.actionsService.getMenus().then(menus => this.menus = menus);
   }
 }

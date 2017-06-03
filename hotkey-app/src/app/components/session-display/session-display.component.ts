@@ -17,7 +17,7 @@ export class SessionDisplayComponent implements OnInit {
     return this.testSessionService.isStarted;
   }
 
-  startSession(): void {
-    this.testSessionService.startSession();
+  toggleStarted(): void {
+    this.testSessionService.toggleStarted();
   }
 }
