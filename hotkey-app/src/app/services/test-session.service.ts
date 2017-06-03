@@ -8,7 +8,7 @@ const maxAction = 10;
 export class TestSessionService {
   isStarted: boolean = false;
   actionSet: Action[] = [];
-  currentAction: number = 0;
+  currentAction: Action;
   actionCount: number = 0;
   maxAction: number = maxAction;
   errorCount: number = 0;
@@ -32,7 +32,7 @@ export class TestSessionService {
   }
 
   answer(action): void  {
-    if(action === this.actionSet[this.currentAction]) {
+    if(action === this.currentAction) {
       this.actionCount += 1;
       this.updateCurrentAction();
       this.checkEnd();
@@ -44,8 +44,8 @@ export class TestSessionService {
   }
 
   updateCurrentAction(): void {
-    this.currentAction = Math.floor(Math.random() * this.actionSet.length);
-    console.log(this.currentAction);
+    let currentActionIndex = Math.floor(Math.random() * this.actionSet.length);
+    this.currentAction = this.actionSet[currentActionIndex];
   }
 
   checkEnd(): void {
@@ -57,7 +57,7 @@ export class TestSessionService {
 
   reset(): void {
     this.isStarted = false;
-    this.currentAction = 0;
+    this.currentAction = undefined;
     this.errorCount = 0;
   }
 

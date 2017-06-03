@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Action } from '../../models/action';
 import { ACTIONS } from '../../models/mock-actions';
 
@@ -8,7 +8,7 @@ import { ACTIONS } from '../../models/mock-actions';
   styleUrls: ['./action.component.css']
 })
 export class ActionComponent implements OnInit {
-  action: Action = ACTIONS[0];
+  @Input() action: Action;
 
   constructor() { }
 
