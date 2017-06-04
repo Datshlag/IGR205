@@ -8,7 +8,11 @@ import { TestSessionService } from '../../services/test-session.service';
 @Component({
   selector: 'app-menubar',
   templateUrl: './menubar.component.html',
-  styleUrls: ['./menubar.component.css']
+  styleUrls: ['./menubar.component.css'],
+  host: {
+    '(window:keydown)': 'onKeyDown($event)',
+    '(window:keyup)': 'onKeyUp($event)'
+  }
 })
 export class MenuBarComponent implements OnInit {
   menus: Menu[] = [];
@@ -29,5 +33,15 @@ export class MenuBarComponent implements OnInit {
 
   getMenus(): void {
     this.actionsService.getMenus().then(menus => this.menus = menus);
+  }
+
+  onKeyDown(event: any) {
+    console.log('down');
+    console.log(event);
+  }
+
+  onKeyUp(event: any) {
+    console.log('up');
+    console.log(event);
   }
 }
