@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Action } from '../../models/action';
 import { Menu } from '../../models/menu';
+import { Utils } from '../../models/utils';
 
 import { ActionsService } from '../../services/actions.service';
 import { TestSessionService } from '../../services/test-session.service';
+
 
 @Component({
   selector: 'app-menubar',
@@ -11,11 +13,11 @@ import { TestSessionService } from '../../services/test-session.service';
   styleUrls: ['./menubar.component.css'],
   host: {
     '(window:keydown)': 'onKeyDown($event)',
-    '(window:keyup)': 'onKeyUp($event)'
   }
 })
 export class MenuBarComponent implements OnInit {
   menus: Menu[] = [];
+  hotkeys: any;
 
   constructor(private actionsService: ActionsService,
              private testSessionService: TestSessionService) { }
@@ -31,17 +33,45 @@ export class MenuBarComponent implements OnInit {
     }
   }
 
-  getMenus(): void {
-    this.actionsService.getMenus().then(menus => this.menus = menus);
+  getMenus(): any {
+    this.actionsService.getMenus().then(menus => {
+      this.menus = menus
+      this.sortHotkeys();
+    });
+  }
+
+  sortHotkeys(): void {
+    let hotkeys = {};
+    for (let i=0; i<this.menus.length; i++) {
+      for (let j=0; j<this.menus[i].actions.length; j++) {
+        let action = this.menus[i].actions[j];
+        Utils.createNestedObject(hotkeys,
+                                 [action.modifier, action.shortcut], action);
+      }
+    }
+    this.hotkeys = hotkeys;
+    console.log(hotkeys);
   }
 
   onKeyDown(event: any) {
-    console.log('down');
     console.log(event);
-  }
+    let modifiers: string = "";
+    if(event.altKey)
+      modifiers += "alt ";
+    if(event.ctrlKey)
+      modifiers += "ctrl ";
+    if(event.metaKey)
+      modifiers += "meta ";
+    if(event.shiftKey)
+      modifiers += "shift ";
 
-  onKeyUp(event: any) {
-    console.log('up');
-    console.log(event);
+    // Deleting last space
+    if (modifiers)
+      modifiers = modifiers.slice(0, modifiers.length -1);
+    else
+      modifiers = "none";
+
+    let action = this.hotkeys[modifiers][event.key];
+    this.testSessionService.answer(action);
   }
 }
