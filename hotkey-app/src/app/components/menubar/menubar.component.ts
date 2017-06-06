@@ -53,24 +53,32 @@ export class MenuBarComponent implements OnInit {
   }
 
   onKeyDown(event: any) {
-    let modifiers: string = "";
-    if(event.altKey)
-      modifiers += "alt ";
-    if(event.ctrlKey)
-      modifiers += "ctrl ";
-    if(event.metaKey)
-      modifiers += "meta ";
-    if(event.shiftKey)
-      modifiers += "shift ";
+    event.preventDefault();
+    console.log(event);
+    if(event.key != 'Alt'
+      && event.key != 'Meta'
+      && event.key != 'Control'
+      && event.key != 'Shift')
+      {
+        let modifiers: string = "";
+        if(event.altKey)
+          modifiers += "alt ";
+        if(event.ctrlKey)
+          modifiers += "ctrl ";
+        if(event.metaKey)
+          modifiers += "meta ";
+        if(event.shiftKey)
+          modifiers += "shift ";
 
-    // Deleting last space
-    if (modifiers)
-      modifiers = modifiers.slice(0, modifiers.length -1);
-    else
-      modifiers = "none";
+        // Deleting last space
+        if (modifiers)
+          modifiers = modifiers.slice(0, modifiers.length -1);
+        else
+          modifiers = "none";
 
-    let action = this.hotkeys[modifiers][event.key];
-    if(this.testSessionService.isStarted)
-      this.testSessionService.answer(action);
+        let action = this.hotkeys[modifiers][event.key];
+        if(this.testSessionService.isStarted)
+          this.testSessionService.answer(action);
+      }
   }
 }
