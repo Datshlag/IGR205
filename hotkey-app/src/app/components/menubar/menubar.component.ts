@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Action } from '../../models/action';
-import { Menu } from '../../models/menu';
-import { Utils } from '../../models/utils';
+import { Menu } from '../../static/menu';
+import { Utils } from '../../static/utils';
 
 import { ActionsService } from '../../services/actions.service';
 import { TestSessionService } from '../../services/test-session.service';
@@ -54,7 +53,6 @@ export class MenuBarComponent implements OnInit {
   }
 
   onKeyDown(event: any) {
-    console.log(event);
     let modifiers: string = "";
     if(event.altKey)
       modifiers += "alt ";
@@ -72,6 +70,7 @@ export class MenuBarComponent implements OnInit {
       modifiers = "none";
 
     let action = this.hotkeys[modifiers][event.key];
-    this.testSessionService.answer(action);
+    if(this.testSessionService.isStarted)
+      this.testSessionService.answer(action);
   }
 }

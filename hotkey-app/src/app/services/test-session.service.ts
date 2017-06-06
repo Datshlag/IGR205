@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Action } from '../models/action';
+import { Action } from '../static/action';
 import { ActionsService } from './actions.service';
 
 const maxAction = 10;

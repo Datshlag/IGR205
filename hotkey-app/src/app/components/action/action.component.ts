@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Action } from '../../models/action';
-import { ACTIONS } from '../../models/mock-actions';
+import { Action } from '../../static/action';
+import { ACTIONS } from '../../static/mock-actions';
 
 @Component({
   selector: 'app-action',
