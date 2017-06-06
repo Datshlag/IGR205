@@ -46,17 +46,25 @@ class Action(db.Model):
 
 @app.route("/")
 def spa():
-    if request.cookies.get("id") is None:
+    def create_session():
         newCookie = os.urandom(16).hex()
         print(newCookie)
         ip = request.environ['REMOTE_ADDR']
         newUser = User(ip, newCookie)
         db.session.add(newUser)
         db.session.commit()
-        response = make_response("Yo")
-        response.set_cookie('id', newCookie)
-        return response
-    response = make_response("Heeeelo")
+        return newCookie
+
+    cookie = request.cookies.get("id")
+    if cookie is None:
+        newCookie = create_session()
+        response = make_response("Hello new user")
+        response.set_cookie("id", newCookie)
+    else:
+        response = make_response("Heeeelo")
+        user = User.query.filter_by(cookieId=cookie).first()
+        if user is None:
+            response.set_cookie("id", create_session())
     return response
 
 @app.route("/log/action", methods=['POST'])
@@ -66,6 +74,8 @@ def action():
         abort(401)
     data = request.get_json(force=True)
     user = User.query.filter_by(cookieId=cookieId).first()
+    if user is None:
+        abort(401)
     newAction = Action(user, int(data['method']), int(data['userAction']),
                        int(data['expectedAction']), data['shortcut'], int(data['time']))
     db.session.add(newAction)
