@@ -6,10 +6,8 @@
       <span class="caret"></span>
     </button>
     <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-      <li *ngFor="let action of menu.actions">
-        <a class="action" (click)="onClick(action)">
-          {{action.label}}
-        </a>
+      <li *ngFor="let action of menu.actions" class="action">
+        <app-classic [action]="action"></app-classic>
       </li>
     </ul>
   </div>

@@ -1,0 +1,20 @@
+.left {
+  color: black;
+  margin: 4px;
+  text-transform: capitalize;
+}
+
+.right {
+  color: black;
+  margin: 4px;
+  display: flex;
+  flex-direction: row;
+  text-transform: capitalize;
+}
+
+.action {
+  cursor: pointer;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}

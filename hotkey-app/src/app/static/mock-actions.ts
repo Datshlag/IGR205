@@ -19,7 +19,7 @@ export const ACTIONS: Action[] = [
     label: 'test3',
     imageUrl: '/media/test3.png'},
   {
-    modifier: 'none',
+    modifier: '',
     shortcut: 'd',
     label: 'test4',
     imageUrl: '/media/test4.png'
