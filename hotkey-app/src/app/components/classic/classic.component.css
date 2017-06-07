@@ -5,7 +5,7 @@
 }
 
 .right {
-  color: black;
+  color: #333333;
   margin: 4px;
   display: flex;
   flex-direction: row;
@@ -14,7 +14,12 @@
 
 .action {
   cursor: pointer;
+  margin: 4px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+}
+
+.action:hover {
+  background-color: #cccccc;
 }
