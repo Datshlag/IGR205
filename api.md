@@ -2,6 +2,18 @@
 
 Everything in JSON
 
+**Get actions*
+----
+  Get the action set
+  * **URL**
+
+    /actionSet
+
+  * **Method:**
+
+    `GET`
+
+
 **Notify action**
 ----
   Notify an action, a cookie is needed
