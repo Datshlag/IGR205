@@ -2,7 +2,7 @@
 
 Everything in JSON
 
-**Get actions*
+**Get actions**
 ----
   Get the action set
   * **URL**
