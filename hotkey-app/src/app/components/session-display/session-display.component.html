@@ -1,7 +1,10 @@
-<div *ngIf="!isStarted()">
-  <button (click)="startSession()" type="button">Start session</button>
+<div class="session">
+	<div *ngIf="!isStarted()">
+	  <button (click)="startSession()" class="round-button-centered">START</button>
+	</div>
+	<div *ngIf="isStarted()">
+	  <button (click)="stopSession()" class="round-button-cornered">STOP</button>
+	  <app-action [action]="testSessionService.currentAction"></app-action>
+	</div>
 </div>
-<div *ngIf="isStarted()">
-  <button (click)="stopSession()" type="button">Stop session</button>
-  <app-action [action]="testSessionService.currentAction"></app-action>
-</div>
+
