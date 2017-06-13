@@ -24,6 +24,7 @@ export class TestSessionService {
   }
 
   stopSession(): void {
+    this.sendResults();
     this.isStarted = false;
     this.currentAction = undefined;
     this.errorCount = 0;
@@ -56,7 +57,6 @@ export class TestSessionService {
 
   checkEnd(): void {
     if (this.actionCount === this.maxAction) {
-      this.sendResults();
       this.stopSession();
     }
   }

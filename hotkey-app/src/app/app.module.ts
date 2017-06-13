@@ -11,6 +11,7 @@ import { MenuBarComponent } from './components/menubar/menubar.component';
 import { ActionComponent } from './components/action/action.component';
 import { NavbarComponent } from './components/navbar/navbar.component'
 import { SessionDisplayComponent } from './components/session-display/session-display.component';
+import { ClassicComponent } from './components/classic/classic.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { SessionDisplayComponent } from './components/session-display/session-di
     MenuBarComponent,
     ActionComponent,
     NavbarComponent,
-    SessionDisplayComponent
+    SessionDisplayComponent,
+    ClassicComponent
   ],
   imports: [
     BrowserModule,

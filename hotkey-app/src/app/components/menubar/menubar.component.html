@@ -1,16 +1,13 @@
-<div class="btn-group" *ngFor="let menu of menus">
-  <div class="dropdown">
-    <button class="btn btn-default dropdown-toggle"
-      type="button" data-toggle="dropdown">
-      {{menu.name}}
-      <span class="caret"></span>
-    </button>
-    <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-      <li *ngFor="let action of menu.actions">
-        <a class="action" (click)="onClick(action)">
-          {{action.label}}
-        </a>
-      </li>
-    </ul>
-  </div>
+<div class="navbar navbar-custom navbar-xs">
+    <div class="container-fluid">
+        <ul class="nav navbar-nav">
+            <li class="dropdown" *ngFor="let menu of menus">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#">{{menu.name}} <span class="caret"></span></a>
+            <ul class="dropdown-menu">
+                <li *ngFor="let action of menu.actions" class="action">
+                <app-classic [action]="action"></app-classic>
+                </li>
+            </ul>
+        </ul>
+    </div>
 </div>

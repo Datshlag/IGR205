@@ -1,0 +1,44 @@
+.session {
+	height: 100%;
+	background-color: #EDE7F6;
+}
+
+.button-cornered {
+  position: absolute;
+  bottom: 0%; left: 0%;
+  width: 100px;
+  height: 100px;
+}
+
+.round-button-centered {
+	position: absolute;
+	top: 55%; left: 50%;
+	transform: translate(-50%,-50%);
+	width: 250px;
+	height: 250px;
+    border-radius: 50%;
+	border:5px solid #ffff8b;
+    overflow:hidden;   
+    background: #ffee58; 
+    box-shadow: 0 0 3px gray;
+    outline: 0;
+    font-size: 50px;
+    font-family: "Courier New", Courier, monospace
+}
+
+.round-button-cornered {
+	position: absolute;
+	bottom: 0%; left: 0%;
+	margin-bottom: 10px;
+	margin-left: 10px;
+	width: 100px;
+	height: 100px;
+    border-radius: 50%;
+	border:5px solid #ffff8b;
+    overflow:hidden;   
+    background: #ffee58; 
+    box-shadow: 0 0 3px gray;
+    outline: 0;
+    font-size: 20px;
+    font-family: "Courier New", Courier, monospace
+}

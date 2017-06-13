@@ -17,6 +17,7 @@ import { TestSessionService } from '../../services/test-session.service';
 export class MenuBarComponent implements OnInit {
   menus: Menu[] = [];
   hotkeys: any;
+  hotkeyMode: string = "classic";
 
   constructor(private actionsService: ActionsService,
              private testSessionService: TestSessionService) { }
@@ -73,8 +74,6 @@ export class MenuBarComponent implements OnInit {
         // Deleting last space
         if (modifiers)
           modifiers = modifiers.slice(0, modifiers.length -1);
-        else
-          modifiers = "none";
 
         let action = this.hotkeys[modifiers][event.key];
         if(this.testSessionService.isStarted)
