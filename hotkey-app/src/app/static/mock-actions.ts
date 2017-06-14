@@ -10,24 +10,24 @@ export const ACTIONS: Action[] = [
   {
     modifier: 'ctrl',
     shortcut: 'b',
-    label: 'test2',
-    imageUrl: '/media/test2.png'
+    label: 'singe',
+    imageUrl: 'https://i.ytimg.com/vi/sWy3s9Dhep0/hqdefault.jpg'
   },
   {
     modifier: 'ctrl',
     shortcut: 'c',
-    label: 'test3',
-    imageUrl: '/media/test3.png'},
+    label: 'chien',
+    imageUrl: 'http://www.toutoupourlechien.com/wp-content/uploads/2015/06/mutuelle-chien-berger-allemand-300x232.jpg'},
   {
     modifier: '',
     shortcut: 'd',
-    label: 'test4',
-    imageUrl: '/media/test4.png'
+    label: 'fourmi',
+    imageUrl: 'http://static.ladepeche.fr/content/media/image/zoom/2009/06/19/200906191079.jpg'
   },
   {
     modifier: 'alt',
     shortcut: 'e',
-    label: 'test5',
-    imageUrl: '/media/test5.png'
+    label: 'scorpion',
+    imageUrl: 'https://images.sciencedaily.com/2014/07/140710161525-large.jpg'
   }
 ]
