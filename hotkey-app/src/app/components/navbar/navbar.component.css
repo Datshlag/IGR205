@@ -97,3 +97,7 @@
 .navbar-custom .navbar-link:hover {
   color: #9162e4;
 }
+
+.modeButton {
+  cursor : pointer;
+}

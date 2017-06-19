@@ -1,0 +1,9 @@
+<div class="action" (click)="onClick(action)">
+  <div class="left">
+    {{action.label}}
+  </div>
+  <div class="right">
+    <div *ngIf="action.modifier">{{action.modifier}}+</div>
+    <div>{{action.shortcut}}</div>
+  </div>
+</div>
