@@ -21,6 +21,7 @@ export class TestSessionService {
 
   changeHotkeyMode(mode): void {
     this.hotkeyModeSource.next(mode);
+    console.log("Mode switched to " + mode);
   }
 
   startSession(): void {
