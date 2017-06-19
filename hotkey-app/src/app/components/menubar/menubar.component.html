@@ -7,6 +7,7 @@
                 <li *ngFor="let action of menu.actions" class="action">
                   <app-classic *ngIf="hotkeyMode=='classic' "[action]="action"></app-classic>
                   <app-disabled *ngIf="hotkeyMode=='disabled' "[action]="action"></app-disabled>
+                  <app-audio *ngIf="hotkeyMode=='audio' "[action]="action"></app-audio>
                 </li>
             </ul>
         </ul>

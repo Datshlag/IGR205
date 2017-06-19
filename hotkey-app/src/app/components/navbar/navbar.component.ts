@@ -11,7 +11,7 @@ import { TestSessionService } from '../../services/test-session.service';
 export class NavbarComponent implements OnInit, OnDestroy {
   subscription: Subscription;
   hotkeyMode: string;
-  modes: string[] = ['classic', 'disabled'];
+  modes: string[] = ['classic', 'disabled', 'audio'];
 
   constructor(private testSessionService: TestSessionService) { }
 
