@@ -5,7 +5,8 @@
                 <a class="dropdown-toggle" data-toggle="dropdown" href="#">{{menu.name}} <span class="caret"></span></a>
             <ul class="dropdown-menu">
                 <li *ngFor="let action of menu.actions" class="action">
-                <app-classic [action]="action"></app-classic>
+                  <app-classic *ngIf="hotkeyMode=='classic' "[action]="action"></app-classic>
+                  <app-disabled *ngIf="hotkeyMode=='disabled' "[action]="action"></app-disabled>
                 </li>
             </ul>
         </ul>

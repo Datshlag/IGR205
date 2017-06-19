@@ -1,0 +1,25 @@
+.left {
+  color: #cccccc;
+  margin: 4px;
+  text-transform: capitalize;
+}
+
+.right {
+  color: #333333;
+  margin: 4px;
+  display: flex;
+  flex-direction: row;
+  text-transform: capitalize;
+}
+
+.action {
+  cursor: pointer;
+  margin: 4px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.action:hover>.right {
+  background-color: #cccccc;
+}

@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { Action } from '../static/action';
 import { ActionsService } from './actions.service';
 
@@ -6,6 +7,8 @@ const maxAction = 10;
 
 @Injectable()
 export class TestSessionService {
+  private hotkeyModeSource: BehaviorSubject<string> = new BehaviorSubject("classic");
+  hotkeyMode$ = this.hotkeyModeSource.asObservable();
   isStarted: boolean = false;
   actionSet: Action[] = [];
   currentAction: Action;
@@ -15,6 +18,11 @@ export class TestSessionService {
   startDate: Date;
 
   constructor(private actionsService: ActionsService) { }
+
+  changeHotkeyMode(mode): void {
+    this.hotkeyModeSource.next(mode);
+    console.log("Mode switched to " + mode);
+  }
 
   startSession(): void {
     this.isStarted = true;

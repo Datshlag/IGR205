@@ -12,6 +12,7 @@ import { ActionComponent } from './components/action/action.component';
 import { NavbarComponent } from './components/navbar/navbar.component'
 import { SessionDisplayComponent } from './components/session-display/session-display.component';
 import { ClassicComponent } from './components/classic/classic.component';
+import { DisabledComponent } from './components/disabled/disabled.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { ClassicComponent } from './components/classic/classic.component';
     ActionComponent,
     NavbarComponent,
     SessionDisplayComponent,
-    ClassicComponent
+    ClassicComponent,
+    DisabledComponent
   ],
   imports: [
     BrowserModule,

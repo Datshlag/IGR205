@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Menu } from '../../static/menu';
 import { Utils } from '../../static/utils';
+import { Subscription } from 'rxjs/Subscription';
 
 import { ActionsService } from '../../services/actions.service';
 import { TestSessionService } from '../../services/test-session.service';
@@ -14,10 +15,11 @@ import { TestSessionService } from '../../services/test-session.service';
     '(window:keydown)': 'onKeyDown($event)',
   }
 })
-export class MenuBarComponent implements OnInit {
+export class MenuBarComponent implements OnInit, OnDestroy {
   menus: Menu[] = [];
   hotkeys: any;
-  hotkeyMode: string = "classic";
+  subscription: Subscription;
+  hotkeyMode: string;
 
   constructor(private actionsService: ActionsService,
              private testSessionService: TestSessionService) { }
@@ -25,6 +27,13 @@ export class MenuBarComponent implements OnInit {
   ngOnInit() {
     this.getMenus();
     this.testSessionService.getActionSet();
+    this.subscription = this.testSessionService.hotkeyMode$
+      .subscribe(mode => this.hotkeyMode = mode);
+  }
+
+  ngOnDestroy() {
+    // Prevent momory leak
+    this.subscription.unsubscribe();
   }
 
   onClick(action): void {

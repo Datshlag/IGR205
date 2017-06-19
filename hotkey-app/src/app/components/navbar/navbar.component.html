@@ -13,12 +13,13 @@
     </div>
     <div id="navbar" class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
-               <li><a href="#">Classic</a></li>
-               <li><a href="#">Sound</a></li>
-               <li><a href="#">ExposeHK</a></li>
+            <li *ngFor="let mode of modes" (click)="onModeClick(mode)"
+              [ngClass]="{active: hotkeyMode === mode}">
+              <a class="modeButton">{{mode}}</a>
+            </li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
-               <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login for experimentator</a></li>
+            <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login for experimentator</a></li>
           </ul>
     </div>
   </div>
