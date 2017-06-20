@@ -1,0 +1,13 @@
+banana  Ctrl+E
+camel Ctrl+W
+cards Shift+W
+clock Shift+S
+coat  Ctrl+S
+corn  Shift+D
+dolphin Shift+R
+frog  Shift+A
+garlic  Shift+E
+mouse Ctrl+A
+pencil  Ctrl+R
+strawberry  Ctrl+Q
+sweater Shift+Q
