@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 
-from flask import Flask, request, make_response, jsonify, abort
+from flask import Flask, request, make_response, jsonify, abort, send_file
 from flask_sqlalchemy import SQLAlchemy
-import os
+import os, base64
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///test.db'
@@ -47,8 +47,7 @@ class Action(db.Model):
 @app.route("/")
 def spa():
     def create_session():
-        newCookie = os.urandom(16).hex()
-        print(newCookie)
+        newCookie = base64.b64encode(os.urandom(24))
         ip = request.environ['REMOTE_ADDR']
         newUser = User(ip, newCookie)
         db.session.add(newUser)
@@ -56,12 +55,11 @@ def spa():
         return newCookie
 
     cookie = request.cookies.get("id")
+    response = make_response(send_file('/var/www/igr/index.html'))
     if cookie is None:
         newCookie = create_session()
-        response = make_response("Hello new user")
         response.set_cookie("id", newCookie)
     else:
-        response = make_response("Heeeelo")
         user = User.query.filter_by(cookieId=cookie).first()
         if user is None:
             response.set_cookie("id", create_session())
@@ -83,4 +81,4 @@ def action():
     return "{}"
 
 if __name__ == "__main__":
-        app.run()
+    app.run()
