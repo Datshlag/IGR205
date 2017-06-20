@@ -4,7 +4,9 @@
 	</div>
 	<div *ngIf="isStarted()">
 	  <button (click)="stopSession()" class="round-button-cornered">STOP</button>
-	  <app-action [action]="testSessionService.currentAction"></app-action>
+    <button (click)="startNext()" *ngIf="isWaitingNext()"
+      class="round-button-centered">NEXT</button>
+	  <app-action *ngIf="!isWaitingNext()" [action]="testSessionService.currentAction"></app-action>
 	</div>
 </div>
 

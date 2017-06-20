@@ -18,8 +18,8 @@
 	height: 250px;
     border-radius: 50%;
 	border:5px solid #ffff8b;
-    overflow:hidden;   
-    background: #ffee58; 
+    overflow:hidden;
+    background: #ffee58;
     box-shadow: 0 0 3px gray;
     outline: 0;
     font-size: 50px;
@@ -35,8 +35,8 @@
 	height: 100px;
   border-radius: 50%;
   border:5px solid #ffff8b;
-  overflow:hidden;   
-  background: #ffee58; 
+  overflow:hidden;
+  background: #ffee58;
   box-shadow: 0 0 3px gray;
   outline: 0;
   font-size: 20px;

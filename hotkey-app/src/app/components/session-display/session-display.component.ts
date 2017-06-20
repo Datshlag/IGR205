@@ -17,8 +17,16 @@ export class SessionDisplayComponent implements OnInit {
     return this.testSessionService.isStarted;
   }
 
+  isWaitingNext(): boolean {
+    return this.testSessionService.waitingNext;
+  }
+
   startSession(): void {
     this.testSessionService.startSession();
+  }
+
+  startNext(): void {
+    this.testSessionService.startNext();
   }
 
   stopSession(): void {

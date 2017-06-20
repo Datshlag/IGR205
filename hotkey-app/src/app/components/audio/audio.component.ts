@@ -10,16 +10,21 @@ import { TestSessionService } from '../../services/test-session.service'
 export class AudioComponent implements OnInit {
   @Input() action: Action;
 
-  constructor() { }
+  constructor(private testSessionService: TestSessionService) { }
 
   ngOnInit() {
   }
 
   onClick(action: Action): void {
-    if(action.audioUrl) {
-      let audio = new Audio(action.audioUrl);
-      audio.play();
-    } else
-      console.log("No audio file for this action");
+    if(this.testSessionService.readyForAnswer()) {
+         // Play audio
+         if(action.audioUrl) {
+           let audio = new Audio(action.audioUrl);
+           audio.play();
+         } else
+           console.log("No audio file for this action");
+         // Send answer
+         this.testSessionService.answer(action);
+       }
   }
 }
