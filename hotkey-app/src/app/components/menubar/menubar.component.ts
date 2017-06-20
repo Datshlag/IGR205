@@ -64,7 +64,6 @@ export class MenuBarComponent implements OnInit, OnDestroy {
 
   onKeyDown(event: any) {
     event.preventDefault();
-    console.log(event);
     if(event.key != 'Alt'
       && event.key != 'Meta'
       && event.key != 'Control'

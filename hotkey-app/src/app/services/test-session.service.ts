@@ -10,6 +10,7 @@ export class TestSessionService {
   private hotkeyModeSource: BehaviorSubject<string> = new BehaviorSubject("classic");
   hotkeyMode$ = this.hotkeyModeSource.asObservable();
   isStarted: boolean = false;
+  waitingNext: boolean;
   actionSet: Action[] = [];
   currentAction: Action;
   actionCount: number = 0;
@@ -26,9 +27,15 @@ export class TestSessionService {
 
   startSession(): void {
     this.isStarted = true;
+    this.waitingNext = true;
     let d = new Date();
     this.startDate = d;
     this.updateCurrentAction();
+  }
+
+  startNext(): void {
+
+    this.waitingNext = false;
   }
 
   stopSession(): void {
@@ -52,6 +59,7 @@ export class TestSessionService {
       this.updateCurrentAction();
       this.checkEnd();
       console.log('good answer');
+      this.waitingNext = true;
     } else {
       this.errorCount += 1;
       console.log('bad answer');

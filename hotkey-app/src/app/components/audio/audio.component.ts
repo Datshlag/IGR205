@@ -10,7 +10,7 @@ import { TestSessionService } from '../../services/test-session.service'
 export class AudioComponent implements OnInit {
   @Input() action: Action;
 
-  constructor() { }
+  constructor(private testSessionService: TestSessionService) { }
 
   ngOnInit() {
   }
@@ -21,5 +21,7 @@ export class AudioComponent implements OnInit {
       audio.play();
     } else
       console.log("No audio file for this action");
+    if(this.testSessionService.isStarted && !this.testSessionService.waitingNext)
+      this.testSessionService.answer(action);
   }
 }
