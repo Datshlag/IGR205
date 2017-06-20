@@ -6,3 +6,27 @@
 	width: 55%;
 	height: 55%;
 }
+
+.bottomdisplay {
+	position: absolute;
+	bottom: 0%; left: 50%;
+	transform: translate(-50%,-50%);
+	width: 250px;
+	height: 50px;
+    border-radius: 10px;
+	border:5px solid #ffff8b;
+    overflow:hidden;   
+    background: #ffee58; 
+    box-shadow: 0 0 3px gray;
+    outline: 0;
+    font-size: 15px;
+    text-align: center;
+    line-height: 275%;
+    font-family: "Courier New", Courier, monospace;
+    opacity:0.6;
+}
+
+.bottomdisplay:hover {
+
+	opacity:1;
+}
