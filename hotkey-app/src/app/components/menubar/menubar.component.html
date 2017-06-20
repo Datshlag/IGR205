@@ -1,7 +1,7 @@
 <div class="navbar navbar-custom navbar-xs">
     <div class="container-fluid">
         <ul class="nav navbar-nav">
-            <li class="dropdown" *ngFor="let menu of menus">
+            <li class="dropdown" *ngFor="let menu of menus" (click)="menuOpened()">
                 <a class="dropdown-toggle" data-toggle="dropdown" href="#">{{menu.name}} <span class="caret"></span></a>
             <ul class="dropdown-menu">
                 <li *ngFor="let action of menu.actions" class="action">

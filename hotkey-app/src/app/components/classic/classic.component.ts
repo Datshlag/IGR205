@@ -17,7 +17,7 @@ export class ClassicComponent implements OnInit {
 
   onClick(action): void {
     console.log("Classic clicked");
-    if(this.testSessionService.isStarted && !this.testSessionService.waitingNext)
+    if(this.testSessionService.readyForAnswer())
       this.testSessionService.answer(action);
   }
 }

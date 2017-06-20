@@ -37,9 +37,14 @@ export class MenuBarComponent implements OnInit, OnDestroy {
   }
 
   onClick(action): void {
-    if (this.testSessionService.isStarted) {
+    if (this.testSessionService.readyForAnswer()) {
       this.testSessionService.answer(action);
     }
+  }
+
+  menuOpened(): void {
+    if(this.testSessionService.readyForAnswer())
+    this.testSessionService.menuOpened();
   }
 
   getMenus(): any {
@@ -67,8 +72,7 @@ export class MenuBarComponent implements OnInit, OnDestroy {
     if(event.key != 'Alt'
       && event.key != 'Meta'
       && event.key != 'Control'
-      && event.key != 'Shift')
-      {
+      && event.key != 'Shift') {
         let modifiers: string = "";
         if(event.altKey)
           modifiers += "alt ";
@@ -86,8 +90,10 @@ export class MenuBarComponent implements OnInit, OnDestroy {
         let action = undefined;
         if(this.hotkeys[modifiers])
           action = this.hotkeys[modifiers][event.key.toLowerCase()];
-        if(this.testSessionService.isStarted)
+        if(this.testSessionService.readyForAnswer()) {
+          this.testSessionService.hotkeyUsed(action);
           this.testSessionService.answer(action);
+        }
       }
   }
 }

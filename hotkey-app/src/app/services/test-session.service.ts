@@ -1,8 +1,11 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
-import { Action } from '../static/action';
 import { ActionsService } from './actions.service';
 
+import { Action } from '../static/action';
+import { Result } from '../static/result';
+
+const logCycle = 3;
 const maxAction = 10;
 
 @Injectable()
@@ -15,8 +18,11 @@ export class TestSessionService {
   currentAction: Action;
   actionCount: number = 0;
   maxAction: number = maxAction;
-  errorCount: number = 0;
   startDate: Date;
+  actionStartDate: Date;
+  menuOpenedDate: Date;
+  currentResult: Result;
+  currentLogs: Result[];
 
   constructor(private actionsService: ActionsService) { }
 
@@ -28,21 +34,21 @@ export class TestSessionService {
   startSession(): void {
     this.isStarted = true;
     this.waitingNext = true;
-    let d = new Date();
-    this.startDate = d;
+    this.currentResult = new Result();
+    this.currentLogs = [];
+    this.startDate = new Date();
     this.updateCurrentAction();
   }
 
   startNext(): void {
-
     this.waitingNext = false;
+    this.actionStartDate = new Date();
   }
 
   stopSession(): void {
     this.sendResults();
     this.isStarted = false;
     this.currentAction = undefined;
-    this.errorCount = 0;
   }
 
   getActionSet(): void {
@@ -53,15 +59,20 @@ export class TestSessionService {
     });
   }
 
+  readyForAnswer(): boolean {
+    return this.isStarted && !this.waitingNext;
+  }
+
   answer(action): void  {
     if(action === this.currentAction) {
+      this.storeResult();
       this.actionCount += 1;
       this.updateCurrentAction();
       this.checkEnd();
       console.log('good answer');
       this.waitingNext = true;
     } else {
-      this.errorCount += 1;
+      this.currentResult.errorCount += 1;
       console.log('bad answer');
     }
   }
@@ -69,6 +80,21 @@ export class TestSessionService {
   updateCurrentAction(): void {
     let currentActionIndex = Math.floor(Math.random() * this.actionSet.length);
     this.currentAction = this.actionSet[currentActionIndex];
+  }
+
+  storeResult(): void {
+    // Logging end time for the current action
+    let d = new Date();
+    this.currentResult.time = d.getTime() - this.actionStartDate.getTime();
+    // Logging menuDelay if necessary
+    if(this.currentResult.menuOpened)
+      this.currentResult.menuDelay = d.getTime() - this.menuOpenedDate.getTime();
+    // Storing action in the logs array
+    this.currentLogs.push(this.currentResult);
+    this.currentResult = new Result();
+    // Checking if the logs need to be sent
+    if(this.currentLogs.length === logCycle)
+      this.sendResults();
   }
 
   checkEnd(): void {
@@ -80,9 +106,23 @@ export class TestSessionService {
   sendResults(): void  {
     let d = new Date();
     const result = {
-      errorCount: this.errorCount,
-      time: d.getTime() - this.startDate.getTime()
+      time: d.getTime() - this.startDate.getTime(),
+      logs: this.currentLogs
     };
     console.log(result);
+    this.currentLogs = [];
+  }
+
+  // Methods called by component to update the result details
+  hotkeyUsed(action): void {
+    if(action === this.currentAction)
+      this.currentResult.hotkeyUsed = true;
+  }
+
+  menuOpened(): void {
+    if (!this.currentResult.menuOpened) {
+      this.currentResult.menuOpened = true;
+      this.menuOpenedDate = new Date();
+    }
   }
 }
