@@ -16,6 +16,10 @@ export class AudioComponent implements OnInit {
   }
 
   onClick(action: Action): void {
-    console.log("Audio clicked");
+    if(action.audioUrl) {
+      let audio = new Audio(action.audioUrl);
+      audio.play();
+    } else
+      console.log("No audio file for this action");
   }
 }

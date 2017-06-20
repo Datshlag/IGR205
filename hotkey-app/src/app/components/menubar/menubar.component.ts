@@ -84,7 +84,9 @@ export class MenuBarComponent implements OnInit, OnDestroy {
         if (modifiers)
           modifiers = modifiers.slice(0, modifiers.length -1);
 
-        let action = this.hotkeys[modifiers][event.key];
+        let action = undefined;
+        if(this.hotkeys[modifiers])
+          action = this.hotkeys[modifiers][event.key.toLowerCase()];
         if(this.testSessionService.isStarted)
           this.testSessionService.answer(action);
       }
