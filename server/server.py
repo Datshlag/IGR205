@@ -62,7 +62,7 @@ def spa():
         return newCookie
 
     cookie = request.cookies.get("id")
-    response = make_response(send_file('/var/www/igr/index.html'))
+    response = make_response(send_file('/var/www/igr/index.html') if os.argc > 1 else send_file("../hotkey-app/src/index.html"))
     if cookie is None:
         newCookie = create_session()
         response.set_cookie("id", newCookie)
