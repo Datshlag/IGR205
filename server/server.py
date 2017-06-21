@@ -74,6 +74,7 @@ def spa():
 
 @app.route("/log/action", methods=['POST'])
 def action():
+    print("got action")
     cookieId = request.cookies.get("id")
     if cookieId is None:
         abort(401)
