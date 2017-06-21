@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { ActionsService } from './services/actions.service';
 import { TestSessionService } from './services/test-session.service';
@@ -30,6 +31,7 @@ import { AudioComponent } from './components/audio/audio.component';
     BrowserModule,
     FormsModule,
     HttpModule,
+    BrowserAnimationsModule,
   ],
   providers: [
     ActionsService,
