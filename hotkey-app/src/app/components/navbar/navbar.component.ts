@@ -25,6 +25,9 @@ export class NavbarComponent implements OnInit, OnDestroy {
   }
 
   onModeClick(mode: string): void {
-    this.testSessionService.changeHotkeyMode(mode);
+    if (!this.testSessionService.isStarted)
+      this.testSessionService.changeHotkeyMode(mode);
+    else
+      console.log("Cannot change mode when session is started");
   }
 }
