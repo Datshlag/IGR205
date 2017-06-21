@@ -27,22 +27,29 @@ class Action(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     userId = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
     user = db.relationship('User', uselist=False)
-    method = db.Column(db.Integer, nullable=False)
-    userAction = db.Column(db.Integer, nullable=False)
-    expectedAction = db.Column(db.Integer, nullable=False)
-    shortcut = db.Column(db.Boolean, nullable=False)
     time = db.Column(db.Integer, nullable=False)
+    actionId = db.Column(db.Integer, nullable=False)
+    correctAnswer = db.Column(db.Boolean, nullable=False)
+    hotKeyUsed = db.Column(db.Boolean, nullable=False)
+    errorCount = db.Column(db.Integer, nullable=False)
+    menuOpenened = db.Column(db.Boolean, nullable=False)
+    menuDelay = db.Column(db.Integer, nullable=False)
 
-    def __init__(self, user, method, userAction, expectedAction, shortcut, time):
+    def __init__(self, user, time, actionId, correctAnswer, hotKeyUsed, errorCount, menuOpenened, menuDelay)
         self.user = user
-        self.method = method
-        self.userAction = userAction
-        self.expectedAction = expectedAction
-        self.shortcut = shortcut
         self.time = time
+        self.actionId = actionId
+        self.correctAnswer = correctAnswer
+        self.correctAnswer = correctAnswer
+        self.correctAnswer = correctAnswer
+        self.correctAnswer = correctAnswer
+        self.hotKeyUsed = hotKeyUsed
+        self.errorCount = errorCount
+        self.menuOpenened = menuOpenened
+        self.menuDelay = menuDelay
 
     def __repr__(self):
-        return "{} did action {} in {}".format(self.user, self.userAction, self.time)
+        return "{} did action {} in {}".format(self.user, self.actionId, self.time)
 
 @app.route("/")
 def spa():
@@ -74,8 +81,8 @@ def action():
     user = User.query.filter_by(cookieId=cookieId).first()
     if user is None:
         abort(401)
-    newAction = Action(user, int(data['method']), int(data['userAction']),
-                       int(data['expectedAction']), data['shortcut'], int(data['time']))
+    newAction = Action(user, data.time, data.actionId, data.correctAnswer,
+                       data.hotKeyUsed, data.errorCount, data.menuOpenened, data.menuDelay)
     db.session.add(newAction)
     db.session.commit()
     return "{}"
