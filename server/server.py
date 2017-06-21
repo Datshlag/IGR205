@@ -81,8 +81,8 @@ def action():
     user = User.query.filter_by(cookieId=cookieId).first()
     if user is None:
         abort(401)
-    newAction = Action(user, data.time, data.actionId, data.correctAnswer,
-                       data.hotKeyUsed, data.errorCount, data.menuOpenened, data.menuDelay)
+    newAction = Action(user, data.result.time, data.result.actionId, data.result.correctAnswer,
+                       data.result.hotKeyUsed, data.result.errorCount, data.result.menuOpenened, data.result.menuDelay)
     db.session.add(newAction)
     db.session.commit()
     return "{}"
