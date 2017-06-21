@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Http } from '@angular/http'
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { ActionsService } from './actions.service';
 
@@ -7,6 +8,7 @@ import { Result } from '../static/result';
 
 const logCycle = 3;
 const maxAction = 4;
+const logActionUrl = '/log/action';
 
 @Injectable()
 export class TestSessionService {
@@ -24,7 +26,8 @@ export class TestSessionService {
   currentResult: Result;
   currentLogs: Result[];
 
-  constructor(private actionsService: ActionsService) { }
+  constructor(private actionsService: ActionsService,
+             private http: Http) { }
 
   changeHotkeyMode(mode): void {
     this.hotkeyModeSource.next(mode);
@@ -117,6 +120,7 @@ export class TestSessionService {
       result: this.currentResult
     };
     console.log(result);
+    this.http.post(logActionUrl, JSON.stringify(result));
   }
 
   // Methods called by component to update the result details
