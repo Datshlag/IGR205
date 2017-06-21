@@ -15,13 +15,9 @@
 }
 
 .action {
-  cursor: pointer;
-  margin: 4px;
+  cursor: not-allowed;
+  padding: 4px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-}
-
-.action:hover>.right {
-  background-color: #cccccc;
 }

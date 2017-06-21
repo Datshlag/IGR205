@@ -1,27 +1,27 @@
-<nav class="navbar navbar-custom navbar-static-top" role="navigation">
-     <div class="container-fluid">
-          <div class="navbar-header">
-               <button type="button" class="navbar-toggle collapsed"
-                    data-toggle="collapse" data-target="#navbar"
-                    aria-expanded="false" aria-controls="navbar">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-               </button>
-          <a class="navbar-brand" href="/">Hotkey App</a>
+  <nav class="navbar navbar-custom navbar-static-top" role="navigation">
+       <div class="container-fluid">
+            <div class="navbar-header">
+                 <button type="button" class="navbar-toggle collapsed"
+                      data-toggle="collapse" data-target="#navbar"
+                      aria-expanded="false" aria-controls="navbar">
+                      <span class="sr-only">Toggle navigation</span>
+                      <span class="icon-bar"></span>
+                      <span class="icon-bar"></span>
+                      <span class="icon-bar"></span>
+                 </button>
+            <a class="navbar-brand" href="/">Hotkey App</a>
+      </div>
+      <div id="navbar" class="collapse navbar-collapse">
+            <ul class="nav navbar-nav">
+              <li *ngFor="let mode of modes" (click)="onModeClick(mode)"
+                [ngClass]="{active: hotkeyMode === mode}">
+                <a class="modeButton">{{mode}}</a>
+              </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+              <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login for experimentator</a></li>
+            </ul>
+      </div>
     </div>
-    <div id="navbar" class="collapse navbar-collapse">
-          <ul class="nav navbar-nav">
-            <li *ngFor="let mode of modes" (click)="onModeClick(mode)"
-              [ngClass]="{active: hotkeyMode === mode}">
-              <a class="modeButton">{{mode}}</a>
-            </li>
-          </ul>
-          <ul class="nav navbar-nav navbar-right">
-            <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login for experimentator</a></li>
-          </ul>
-    </div>
-  </div>
-</nav>
+  </nav>
 

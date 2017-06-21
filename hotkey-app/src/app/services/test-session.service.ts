@@ -6,7 +6,7 @@ import { Action } from '../static/action';
 import { Result } from '../static/result';
 
 const logCycle = 3;
-const maxAction = 10;
+const maxAction = 4;
 
 @Injectable()
 export class TestSessionService {
@@ -46,8 +46,8 @@ export class TestSessionService {
   }
 
   stopSession(): void {
-    this.sendResults();
     this.isStarted = false;
+    this.actionCount = 0;
     this.currentAction = undefined;
   }
 
@@ -64,15 +64,15 @@ export class TestSessionService {
   }
 
   answer(action): void  {
+    this.logResult(action);
     if(action === this.currentAction) {
-      this.storeResult();
       this.actionCount += 1;
       this.updateCurrentAction();
-      this.checkEnd();
+      if (!this.checkEnd())
+        this.waitingNext = true;
       console.log('good answer');
-      this.waitingNext = true;
     } else {
-      this.currentResult.errorCount += 1;
+      this.waitingNext = true;
       console.log('bad answer');
     }
   }
@@ -82,24 +82,31 @@ export class TestSessionService {
     this.currentAction = this.actionSet[currentActionIndex];
   }
 
-  storeResult(): void {
+  logResult(action: Action): void {
     // Logging end time for the current action
     let d = new Date();
     this.currentResult.time = d.getTime() - this.actionStartDate.getTime();
+
+    // Logging the action answered and its correctness
+    // TODO: IMPLEMENT ACTION ID
+    this.currentResult.actionId = 0;
+    this.currentResult.correctAnswer = action === this.currentAction;
+
     // Logging menuDelay if necessary
     if(this.currentResult.menuOpened)
       this.currentResult.menuDelay = d.getTime() - this.menuOpenedDate.getTime();
-    // Storing action in the logs array
-    this.currentLogs.push(this.currentResult);
+
+    // Sending the result to the server
+    this.sendResults();
+
+    // Reseting currentResult
     this.currentResult = new Result();
-    // Checking if the logs need to be sent
-    if(this.currentLogs.length === logCycle)
-      this.sendResults();
   }
 
-  checkEnd(): void {
+  checkEnd(): boolean {
     if (this.actionCount === this.maxAction) {
       this.stopSession();
+      return true;
     }
   }
 
@@ -107,10 +114,9 @@ export class TestSessionService {
     let d = new Date();
     const result = {
       time: d.getTime() - this.startDate.getTime(),
-      logs: this.currentLogs
+      result: this.currentResult
     };
     console.log(result);
-    this.currentLogs = [];
   }
 
   // Methods called by component to update the result details

@@ -1,15 +1,19 @@
-<div class="navbar navbar-custom navbar-xs">
+<div *ngIf="testSessionService.readyForAnswer()" [@fadeInOut]>
+  <div class="navbar navbar-custom navbar-xs">
     <div class="container-fluid">
-        <ul class="nav navbar-nav">
-            <li class="dropdown" *ngFor="let menu of menus" (click)="menuOpened()">
-                <a class="dropdown-toggle" data-toggle="dropdown" href="#">{{menu.name}} <span class="caret"></span></a>
-            <ul class="dropdown-menu">
-                <li *ngFor="let action of menu.actions" class="action">
-                  <app-classic *ngIf="hotkeyMode=='classic' "[action]="action"></app-classic>
-                  <app-disabled *ngIf="hotkeyMode=='disabled' "[action]="action"></app-disabled>
-                  <app-audio *ngIf="hotkeyMode=='audio' "[action]="action"></app-audio>
-                </li>
-            </ul>
-        </ul>
+      <ul class="nav navbar-nav">
+        <li class="dropdown" *ngFor="let menu of menus" (click)="menuOpened()">
+          <a class="dropdown-toggle" data-toggle="dropdown"
+            href="#">{{menu.name}} <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li *ngFor="let action of menu.actions" class="action">
+              <app-classic *ngIf="hotkeyMode=='classic' "[action]="action"></app-classic>
+              <app-disabled *ngIf="hotkeyMode=='disabled' "[action]="action"></app-disabled>
+              <app-audio *ngIf="hotkeyMode=='audio' "[action]="action"></app-audio>
+            </li>
+          </ul>
+        </li>
+      </ul>
     </div>
+  </div>
 </div>
