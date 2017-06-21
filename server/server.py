@@ -35,7 +35,7 @@ class Action(db.Model):
     menuOpenened = db.Column(db.Boolean, nullable=False)
     menuDelay = db.Column(db.Integer, nullable=False)
 
-    def __init__(self, user, time, actionId, correctAnswer, hotKeyUsed, errorCount, menuOpenened, menuDelay)
+    def __init__(self, user, time, actionId, correctAnswer, hotKeyUsed, errorCount, menuOpenened, menuDelay):
         self.user = user
         self.time = time
         self.actionId = actionId
