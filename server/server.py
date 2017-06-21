@@ -63,9 +63,9 @@ def spa():
 
     cookie = request.cookies.get("id")
     if len(sys.argv) > 1 and sys.argv[1] ==  "--debug":
-        repsonse = send_file("../hotkey-app/dist/index.html"))
+        response = make_response(send_file("../hotkey-app/dist/index.html"))
     else:
-        response = make_response(send_file('/var/www/igr/index.html')
+        response = make_response(send_file('/var/www/igr/index.html'))
     if cookie is None:
         newCookie = create_session()
         response.set_cookie("id", newCookie)
