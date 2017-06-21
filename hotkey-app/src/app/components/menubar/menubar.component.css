@@ -103,7 +103,7 @@
 
 /* structural properties for navbar */
 .navbar-custom { 
-  min-height:30px; height: 30px; 
+  min-height:38px; height: 38px; 
 }
 .navbar-custom .navbar-brand { 
   padding: 0px 12px;
@@ -113,7 +113,12 @@
 .navbar-custom .navbar-nav > li > a {  
   padding-top: 0px; 
   padding-bottom: 0px; 
-  line-height: 29px; 
+  line-height: 37px; 
+  text-align: center;
+  width: 158px;
+}
+.navbar-custom .navbar-nav > .dropdown-menu > li{ 
+  width: 16 0px!important;
 }
 .navbar-custom .navbar-nav {
   margin: 0 -15px;
@@ -126,7 +131,7 @@
   display: block!important;
 }
 
-.navbar-custom .navbar-nav>li, .navbar-nav {
+.navbar-custom .navbar-nav > li, .navbar-nav {
   float: left !important;
 }
 
