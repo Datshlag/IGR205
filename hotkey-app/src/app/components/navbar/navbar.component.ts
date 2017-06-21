@@ -11,7 +11,7 @@ import { TestSessionService } from '../../services/test-session.service';
 export class NavbarComponent implements OnInit, OnDestroy {
   subscription: Subscription;
   hotkeyMode: string;
-  modes: string[] = ['classic', 'disabled'];
+  modes: string[] = ['classic', 'disabled', 'audio'];
 
   constructor(private testSessionService: TestSessionService) { }
 
@@ -25,6 +25,9 @@ export class NavbarComponent implements OnInit, OnDestroy {
   }
 
   onModeClick(mode: string): void {
-    this.testSessionService.changeHotkeyMode(mode);
+    if (!this.testSessionService.isStarted)
+      this.testSessionService.changeHotkeyMode(mode);
+    else
+      console.log("Cannot change mode when session is started");
   }
 }

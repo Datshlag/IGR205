@@ -18,8 +18,8 @@
 	height: 250px;
     border-radius: 50%;
 	border:5px solid #ffff8b;
-    overflow:hidden;   
-    background: #ffee58; 
+    overflow:hidden;
+    background: #ffee58;
     box-shadow: 0 0 3px gray;
     outline: 0;
     font-size: 50px;
@@ -33,12 +33,18 @@
 	margin-left: 10px;
 	width: 100px;
 	height: 100px;
-    border-radius: 50%;
-	border:5px solid #ffff8b;
-    overflow:hidden;   
-    background: #ffee58; 
-    box-shadow: 0 0 3px gray;
-    outline: 0;
-    font-size: 20px;
-    font-family: "Courier New", Courier, monospace
+  border-radius: 50%;
+  border:5px solid #ffff8b;
+  overflow:hidden;
+  background: #ffee58;
+  box-shadow: 0 0 3px gray;
+  outline: 0;
+  font-size: 20px;
+  font-family: "Courier New", Courier, monospace;
+  opacity: 0.6;
+}
+
+.round-button-cornered:hover {
+
+  opacity:1;
 }

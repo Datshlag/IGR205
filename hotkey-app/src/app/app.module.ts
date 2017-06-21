@@ -13,6 +13,7 @@ import { NavbarComponent } from './components/navbar/navbar.component'
 import { SessionDisplayComponent } from './components/session-display/session-display.component';
 import { ClassicComponent } from './components/classic/classic.component';
 import { DisabledComponent } from './components/disabled/disabled.component';
+import { AudioComponent } from './components/audio/audio.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { DisabledComponent } from './components/disabled/disabled.component';
     NavbarComponent,
     SessionDisplayComponent,
     ClassicComponent,
-    DisabledComponent
+    DisabledComponent,
+    AudioComponent
   ],
   imports: [
     BrowserModule,
