@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 
-from flask import Flask, request, make_response, jsonify, abort, send_file
+from flask import Flask, request, make_response, jsonify, abort, send_file, send_from_directory
 from flask_sqlalchemy import SQLAlchemy
-import os, base64
+import os, base64, sys
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///test.db'
@@ -62,7 +62,10 @@ def spa():
         return newCookie
 
     cookie = request.cookies.get("id")
-    response = make_response(send_file('/var/www/igr/index.html') if os.argc > 1 else send_file("../hotkey-app/src/index.html"))
+    if len(sys.argv) > 1 and sys.argv[1] ==  "--debug":
+        repsonse = send_file("../hotkey-app/dist/index.html"))
+    else:
+        response = make_response(send_file('/var/www/igr/index.html')
     if cookie is None:
         newCookie = create_session()
         response.set_cookie("id", newCookie)
@@ -87,6 +90,9 @@ def action():
     db.session.add(newAction)
     db.session.commit()
     return "{}"
+@app.route('/<path:path>')
+def send_js(path):
+    return send_from_directory('../hotkey-app/dist/', path)
 
 if __name__ == "__main__":
     app.run()
