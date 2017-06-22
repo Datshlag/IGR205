@@ -8,7 +8,7 @@ import { Result } from '../static/result';
 
 const logCycle = 3;
 const maxAction = 4;
-const logActionUrl = '/log/action';
+const logActionUrl = 'http://localhost:5000/log/action';
 
 @Injectable()
 export class TestSessionService {
@@ -120,7 +120,9 @@ export class TestSessionService {
       result: this.currentResult
     };
     console.log(result);
-    this.http.post(logActionUrl, JSON.stringify(result));
+    this.http.post(logActionUrl, result).subscribe(data => {
+      console.log(data);
+    });
   }
 
   // Methods called by component to update the result details
