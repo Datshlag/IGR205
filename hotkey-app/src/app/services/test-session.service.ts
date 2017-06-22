@@ -8,7 +8,7 @@ import { Result } from '../static/result';
 
 const logCycle = 3;
 const maxAction = 4;
-const logActionUrl = 'http://localhost:5000/log/action';
+const logActionUrl = '/log/action';
 
 @Injectable()
 export class TestSessionService {
