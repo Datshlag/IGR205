@@ -4,7 +4,7 @@ Everything in JSON
 
 **Get actions**
 ----
-  Get the action set
+  Get the action set (doesn't work)
   * **URL**
 
     /actionSet
@@ -13,6 +13,25 @@ Everything in JSON
 
     `GET`
 
+**Create session**
+----
+  Create a session
+
+* **URL**
+
+  /log/session
+
+* **Method:**
+
+  `POST`
+  
+* **Returns: (JSON)**
+  
+  * `id=[integer]`
+    
+    Id of the session
+
+* **Data Params**
 
 **Notify action**
 ----
@@ -28,29 +47,10 @@ Everything in JSON
 
 
 * **Data Params**
-
-  **Required:**
-
-  * `method=[integer]`
-
-    The method id, to be defined.
-
-  * `userAction=[integer]`
-
-    The user action id.
-
-  * `expectedAction=[integer]`
-
-    The expected action id.
-
-  * `shortcut=[bool]`
-
-    True if the user used a shortcut.
-
-  * `time=[integer]`
-
-    Time in ms for the user to trigger the action.
-
+  
+  Adapted from Guillaume's code
+  
+  In result, put sessionId=[interger]
 
 * **Error Response:**
 
