@@ -120,9 +120,17 @@ export class TestSessionService {
       result: this.currentResult
     };
     console.log(result);
-    this.http.post(logActionUrl, result).subscribe(data => {
-      console.log(data);
-    });
+    this.http.post(logActionUrl, result).subscribe(
+      data => {
+        console.log(data);
+      },
+      err => {
+        console.log("error");
+        console.log(err);
+      },
+      () => {
+        console.log("ended");
+      });
   }
 
   // Methods called by component to update the result details
