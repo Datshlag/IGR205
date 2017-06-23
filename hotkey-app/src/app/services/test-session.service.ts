@@ -6,7 +6,6 @@ import { ActionsService } from './actions.service';
 import { Action } from '../static/action';
 import { Result } from '../static/result';
 
-const logCycle = 3;
 const maxAction = 4;
 const startSessionUrl = '/log/session';
 const logActionUrl = '/log/action';
@@ -22,6 +21,7 @@ export class TestSessionService {
   actionCount: number = 0;
   maxAction: number = maxAction;
   currentSessionId: number;
+  alertType: string;
   startDate: Date;
   actionStartDate: Date;
   menuOpenedDate: Date;
@@ -44,7 +44,7 @@ export class TestSessionService {
     this.startDate = new Date();
     this.updateCurrentAction();
 
-    // Post method to notify server of starting session and getting session ID
+    // Post method to notify server of starting session and get session ID
     this.http.post(startSessionUrl, {}).subscribe(
       data => {
         let id = data.json().id;
@@ -61,12 +61,16 @@ export class TestSessionService {
     // Reseting currentResult and setting its session ID
     this.currentResult = new Result();
     this.currentResult.sessionId = this.currentSessionId;
+
+    // Removing alert if needed
+    this.alertType = undefined;
   }
 
   stopSession(): void {
     this.isStarted = false;
     this.actionCount = 0;
     this.currentAction = undefined;
+    this.showAlert('end');
   }
 
   getActionSet(): void {
@@ -86,12 +90,13 @@ export class TestSessionService {
     if(action === this.currentAction) {
       this.actionCount += 1;
       this.updateCurrentAction();
-      if (!this.checkEnd())
+      if (!this.checkEnd()) {
         this.waitingNext = true;
-      console.log('good answer');
+        this.showAlert('correct');
+      }
     } else {
       this.waitingNext = true;
-      console.log('bad answer');
+      this.showAlert('wrong');
     }
   }
 
@@ -133,6 +138,11 @@ export class TestSessionService {
     };
     console.log(result);
     this.http.post(logActionUrl, result).subscribe();
+  }
+
+  showAlert(alertType: string): void {
+    setTimeout(() => {this.alertType = alertType;}, 400);
+    setTimeout(() => {this.alertType = undefined;}, 3000);
   }
 
   // Methods called by component to update the result details
