@@ -1,10 +1,28 @@
 <div class="session">
   <div *ngIf="testSessionService.alertType === 'correct'"
-    class="alert alert-success" role="alert">Correct answer !</div>
+    class="alert alert-success" role="alert">
+    <button type="button" class="close"
+      data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+    Correct answer !
+  </div>
   <div *ngIf="testSessionService.alertType === 'wrong'"
-    class="alert alert-danger" role="alert">Wrong answer !</div>
+    class="alert alert-danger" role="alert">
+    <button type="button" class="close"
+      data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+    Wrong answer !
+  </div>
   <div *ngIf="testSessionService.alertType === 'end'"
-    class="alert alert-info" role="alert">Session ended, thank you</div>
+    class="alert alert-info" role="alert">
+    <button type="button" class="close"
+      data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+    Session ended, thank you
+  </div>
 	<div *ngIf="!isStarted()">
 	  <button (click)="startSession()" class="round-button-centered">START</button>
 	</div>
