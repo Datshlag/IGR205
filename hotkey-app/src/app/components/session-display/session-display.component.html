@@ -1,4 +1,5 @@
 <div class="session">
+
   <div *ngIf="testSessionService.alertType === 'correct'"
     class="alert alert-success" role="alert">
     <button type="button" class="close"
@@ -23,6 +24,7 @@
     </button>
     Session ended, thank you
   </div>
+
 	<div *ngIf="!isStarted()">
 	  <button (click)="startSession()" class="round-button-centered">START</button>
 	</div>
