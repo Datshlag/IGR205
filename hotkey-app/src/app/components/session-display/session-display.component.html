@@ -1,5 +1,5 @@
 <div class="session">
-
+  
   <div *ngIf="testSessionService.alertType === 'correct'"
     class="alert alert-success" role="alert">
     <button type="button" class="close"
@@ -24,17 +24,30 @@
     </button>
     Session ended, thank you
   </div>
+  <div *ngIf="!isStarted()" class="content">
+    <button (click)="startSession()" class="start-button-centered">START</button>
+  </div>
+  <div *ngIf="isStarted() && !isWaitingNext()" class="content">
+    <button (click)="stopSession()" class="stop-button-cornered-in-session">STOP</button>
+    <app-action *ngIf="!isWaitingNext()" [action]="testSessionService.currentAction"></app-action>
+    <div class="panel panel-primary skillometer">
+      <div class="panel-heading">
+          <h3 class="panel-title">Skill-o-meter</h3>
+      </div>
+      <div class="panel-body flex-grow">
+          <div class="shortcut">Shortcut i</div>
+          <div class="shortcut">Shortcut i</div>
+          <div class="shortcut">Shortcut i</div>
+          <div class="shortcut">Shortcut i</div>
+          <div class="shortcut">Shortcut i</div>
+          <div class="shortcut">Shortcut i</div>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="isStarted() && isWaitingNext()" class="content">
+    <button (click)="stopSession()" class="stop-button-cornered">STOP</button>
+    <button (click)="startNext()" class="next-button-centered">NEXT</button>
+  </div>
 
-	<div *ngIf="!isStarted()">
-	  <button (click)="startSession()" class="start-button-centered">START</button>
-	</div>
-	<div *ngIf="isStarted() && !isWaitingNext()">
-	  <button (click)="stopSession()" class="stop-button-cornered-in-session">STOP</button>
-	  <app-action *ngIf="!isWaitingNext()" [action]="testSessionService.currentAction"></app-action>
-	</div>
-	<div *ngIf="isStarted() && isWaitingNext()">
-		<button (click)="stopSession()" class="stop-button-cornered">STOP</button>
-		<button (click)="startNext()" class="next-button-centered">NEXT</button>
-	</div>
 </div>
 

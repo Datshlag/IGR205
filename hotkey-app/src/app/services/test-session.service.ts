@@ -6,7 +6,7 @@ import { ActionsService } from './actions.service';
 import { Action } from '../static/action';
 import { Result } from '../static/result';
 
-const maxAction = 4;
+const maxAction = 5;
 const startSessionUrl = '/log/session';
 const logActionUrl = '/log/action';
 
@@ -29,7 +29,7 @@ export class TestSessionService {
   currentLogs: Result[];
 
   constructor(private actionsService: ActionsService,
-             private http: Http) { }
+              private http: Http) { }
 
   changeHotkeyMode(mode): void {
     this.hotkeyModeSource.next(mode);

@@ -8,9 +8,9 @@
 
 .centeredimage {
 	margin: auto;
+	transform: translate(0, -20px);
 	width: 350px;
 	height: 350px;
-	transform: translate(0, -18px);
 }
 
 .bottomdisplay {

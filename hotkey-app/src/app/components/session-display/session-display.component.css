@@ -1,16 +1,14 @@
-div {
+.session {
 	height: 100%;
-  width: 100%;
 	background-color: #EDE7F6;
-  display: flex;
-  flex-flow: row wrap;
-  justify-content: center;
-  align-items: center;
 }
 
-.button-cornered {
-  width: 100px;
-  height: 100px;
+.content {
+  height: 100%;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-around;
+  align-items: center;
 }
 
 .start-button-centered {
@@ -31,8 +29,8 @@ div {
 .next-button-centered {
   width: 200px;
   height: 200px;
-  margin: auto;
   transform: translate(-65px, -35px);
+  margin: auto;
   border-radius: 50%;
   border:5px solid #ffff8b;
   overflow:hidden;
@@ -45,13 +43,12 @@ div {
 
 .stop-button-cornered {
   align-self: flex-end;
+  transform: translate(0, -50px);
 	width: 100px;
 	height: 100px;
   margin: 15px;
-  transform: translate(0, -50%);
   border-radius: 50%;
   border:5px solid #ffff8b;
-  overflow:hidden;
   background: #ffee58;
   box-shadow: 0 0 3px gray;
   outline: 0;
@@ -64,24 +61,48 @@ div {
   align-self: flex-end;
   width: 100px;
   height: 100px;
+  transform: translate(0, -88px);
   margin: 15px;
-  transform: translate(0, -88%);
   border-radius: 50%;
   border:5px solid #ffff8b;
-  overflow:hidden;
   background: #ffee58;
   box-shadow: 0 0 3px gray;
-  outline: 0;
   font-size: 20px;
   font-family: "Courier New", Courier, monospace;
   opacity: 0.6;
 }
 
-app-action {
-  transform: translate(-65px, -10%);
+.skillometer {
   margin: auto;
+  align-self: center;
+  transform: translate(125px, -50px);
+  height: 400px;
+  width: 275px;
+}
+
+.skillometer > panel-primary {
+  background-color: #9162e4;
+}
+
+app-action {
+  margin: auto;
+  transform: translate(210px, -40px);
 }
 
 .round-button-cornered:hover {
   opacity:1;
+}
+
+.scores {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  justify-content: stretch;
+}
+
+.shortcut {
+  background-color: #9ACD32;
+  flex: 1;
 }
