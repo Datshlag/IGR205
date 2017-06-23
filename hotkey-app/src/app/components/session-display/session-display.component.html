@@ -1,12 +1,14 @@
 <div class="session">
 	<div *ngIf="!isStarted()">
-	  <button (click)="startSession()" class="round-button-centered">START</button>
+	  <button (click)="startSession()" class="start-button-centered">START</button>
 	</div>
-	<div *ngIf="isStarted()">
-	  <button (click)="stopSession()" class="round-button-cornered">STOP</button>
-    <button (click)="startNext()" *ngIf="isWaitingNext()"
-      class="round-button-centered">NEXT</button>
+	<div *ngIf="isStarted() && !isWaitingNext()">
+	  <button (click)="stopSession()" class="stop-button-cornered-in-session">STOP</button>
 	  <app-action *ngIf="!isWaitingNext()" [action]="testSessionService.currentAction"></app-action>
+	</div>
+	<div *ngIf="isStarted() && isWaitingNext()">
+		<button (click)="stopSession()" class="stop-button-cornered">STOP</button>
+		<button (click)="startNext()" class="next-button-centered">NEXT</button>
 	</div>
 </div>
 

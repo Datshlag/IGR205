@@ -1,38 +1,54 @@
-.session {
+div {
 	height: 100%;
+  width: 100%;
 	background-color: #EDE7F6;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: center;
 }
 
 .button-cornered {
-  position: absolute;
-  bottom: 0%; left: 0%;
   width: 100px;
   height: 100px;
 }
 
-.round-button-centered {
-	position: absolute;
-	top: 55%; left: 50%;
-	transform: translate(-50%,-50%);
-	width: 250px;
-	height: 250px;
-    border-radius: 50%;
+.start-button-centered {
+	width: 200px;
+	height: 200px;
+  margin: auto;
+  transform: translate(0, -35px);
+  border-radius: 50%;
 	border:5px solid #ffff8b;
-    overflow:hidden;
-    background: #ffee58;
-    box-shadow: 0 0 3px gray;
-    outline: 0;
-    font-size: 50px;
-    font-family: "Courier New", Courier, monospace
+  overflow:hidden;
+  background: #ffee58;
+  box-shadow: 0 0 3px gray;
+  outline: 0;
+  font-size: 45px;
+  font-family: "Courier New", Courier, monospace
 }
 
-.round-button-cornered {
-	position: absolute;
-	bottom: 0%; left: 0%;
-	margin-bottom: 10px;
-	margin-left: 10px;
+.next-button-centered {
+  width: 200px;
+  height: 200px;
+  margin: auto;
+  transform: translate(-65px, -35px);
+  border-radius: 50%;
+  border:5px solid #ffff8b;
+  overflow:hidden;
+  background: #ffee58;
+  box-shadow: 0 0 3px gray;
+  outline: 0;
+  font-size: 45px;
+  font-family: "Courier New", Courier, monospace
+}
+
+.stop-button-cornered {
+  align-self: flex-end;
 	width: 100px;
 	height: 100px;
+  margin: 15px;
+  transform: translate(0, -50%);
   border-radius: 50%;
   border:5px solid #ffff8b;
   overflow:hidden;
@@ -44,7 +60,28 @@
   opacity: 0.6;
 }
 
-.round-button-cornered:hover {
+.stop-button-cornered-in-session {
+  align-self: flex-end;
+  width: 100px;
+  height: 100px;
+  margin: 15px;
+  transform: translate(0, -88%);
+  border-radius: 50%;
+  border:5px solid #ffff8b;
+  overflow:hidden;
+  background: #ffee58;
+  box-shadow: 0 0 3px gray;
+  outline: 0;
+  font-size: 20px;
+  font-family: "Courier New", Courier, monospace;
+  opacity: 0.6;
+}
 
+app-action {
+  transform: translate(-65px, -10%);
+  margin: auto;
+}
+
+.round-button-cornered:hover {
   opacity:1;
 }
