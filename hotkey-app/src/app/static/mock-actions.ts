@@ -4,14 +4,14 @@ export const ACTIONS: Action[] = [
 /* ANIMALS */
   {
     modifier: 'ctrl',
-    shortcut: 'a',
+    shortcut: 'z',
     label: 'bat',
     imageUrl: './assets/svgs/animals/bat.svg',
     audioUrl: './assets/sounds/animals/bat.wav'
   },
   {
-    modifier: 'ctrl',
-    shortcut: 'z',
+    modifier: 'shift',
+    shortcut: 'r',
     label: 'camel',
     imageUrl: './assets/svgs/animals/camel.svg',
     audioUrl: './assets/sounds/animals/camel.wav'
@@ -24,15 +24,15 @@ export const ACTIONS: Action[] = [
     audioUrl: './assets/sounds/animals/cat.wav'
   },
   {
-    modifier: 'ctrl',
-    shortcut: 'r',
+    modifier: 'alt',
+    shortcut: 't',
     label: 'dinosaur',
     imageUrl: './assets/svgs/animals/dinosaur.svg',
     audioUrl: './assets/sounds/animals/dinosaur.wav'
   },
   {
-    modifier: 'ctrl',
-    shortcut: 't',
+    modifier: '',
+    shortcut: '',
     label: 'dog',
     imageUrl: './assets/svgs/animals/dog.svg',
     audioUrl: './assets/sounds/animals/dog.wav'
@@ -89,36 +89,36 @@ export const ACTIONS: Action[] = [
 
 /* FRUITS */
   {
-    modifier: 'ctrl',
-    shortcut: 'q',
+    modifier: 'shift',
+    shortcut: 'z',
     label: 'apple',
     imageUrl: './assets/svgs/fruits/apple.svg',
     audioUrl: './assets/sounds/fruits/apple.wav'
   },
   {
-    modifier: 'ctrl',
-    shortcut: 's',
+    modifier: 'alt',
+    shortcut: 'd',
     label: 'banana',
     imageUrl: './assets/svgs/fruits/banana.svg',
     audioUrl: './assets/sounds/fruits/banana.wav'
   },
   {
     modifier: 'ctrl',
-    shortcut: 'd',
+    shortcut: 'f',
     label: 'cherry',
     imageUrl: './assets/svgs/fruits/cherry.svg',
     audioUrl: './assets/sounds/fruits/cherry.wav'
   },
   {
     modifier: 'ctrl',
-    shortcut: 'f',
+    shortcut: 't',
     label: 'grapes',
     imageUrl: './assets/svgs/fruits/grapes.svg',
     audioUrl: './assets/sounds/fruits/grapes.wav'
   },
   {
-    modifier: 'ctrl',
-    shortcut: 'g',
+    modifier: '',
+    shortcut: '',
     label: 'kiwi',
     imageUrl: './assets/svgs/fruits/kiwi.svg',
     audioUrl: './assets/sounds/fruits/kiwi.wav'
@@ -169,36 +169,36 @@ export const ACTIONS: Action[] = [
 /* VEGETABLES */
 
   {
-    modifier: 'shift',
-    shortcut: 'a',
+    modifier: 'alt',
+    shortcut: 'f',
     label: 'artichoke',
     imageUrl: './assets/svgs/vegetables/artichoke.svg',
     audioUrl: './assets/sounds/vegetables/artichoke.wav'
   },
   {
     modifier: 'shift',
-    shortcut: 'z',
+    shortcut: 'a',
     label: 'broccoli',
     imageUrl: './assets/svgs/vegetables/broccoli.svg',
     audioUrl: './assets/sounds/vegetables/broccoli.wav'
   },
   {
-    modifier: 'shift',
+    modifier: 'alt',
     shortcut: 'e',
     label: 'carrot',
     imageUrl: './assets/svgs/vegetables/carrot.svg',
     audioUrl: './assets/sounds/vegetables/carrot.wav'
   },
   {
-    modifier: 'shift',
-    shortcut: 'r',
+    modifier: 'ctrl',
+    shortcut: 'd',
     label: 'corn',
     imageUrl: './assets/svgs/vegetables/corn.svg',
     audioUrl: './assets/sounds/vegetables/corn.wav'
   },
   {
-    modifier: 'shift',
-    shortcut: 't',
+    modifier: '',
+    shortcut: '',
     label: 'garlic',
     imageUrl: './assets/svgs/vegetables/garlic.svg',
     audioUrl: './assets/sounds/vegetables/garlic.wav'
@@ -243,35 +243,35 @@ export const ACTIONS: Action[] = [
 
   {
     modifier: 'shift',
-    shortcut: 'q',
+    shortcut: 'e',
     label: 'boots',
     imageUrl: './assets/svgs/clothing/boots.svg',
     audioUrl: './assets/sounds/clothing/boots.wav'
   },
   {
-    modifier: 'shift',
-    shortcut: 's',
+    modifier: 'ctrl',
+    shortcut: 'a',
     label: 'bowtie',
     imageUrl: './assets/svgs/clothing/bowtie.svg',
     audioUrl: './assets/sounds/clothing/bowtie.wav'
   },
   {
-    modifier: 'shift',
-    shortcut: 'd',
+    modifier: 'ctrl',
+    shortcut: 'g',
     label: 'coat',
     imageUrl: './assets/svgs/clothing/coat.svg',
     audioUrl: './assets/sounds/clothing/coat.wav'
   },
   {
-    modifier: 'shift',
-    shortcut: 'f',
+    modifier: 'alt',
+    shortcut: 'a',
     label: 'gloves',
     imageUrl: './assets/svgs/clothing/gloves.svg',
     audioUrl: './assets/sounds/clothing/gloves.wav'
   },
   {
-    modifier: 'shift',
-    shortcut: 'f',
+    modifier: '',
+    shortcut: '',
     label: 'hat',
     imageUrl: './assets/svgs/clothing/hat.svg',
     audioUrl: './assets/sounds/clothing/hat.wav'
@@ -308,8 +308,8 @@ export const ACTIONS: Action[] = [
 /* OFFICE */
 
   {
-    modifier: 'alt',
-    shortcut: 'a',
+    modifier: 'shift',
+    shortcut: 't',
     label: 'chair',
     imageUrl: './assets/svgs/office/chair.svg',
     audioUrl: './assets/sounds/office/chair.wav'
@@ -322,22 +322,22 @@ export const ACTIONS: Action[] = [
     audioUrl: './assets/sounds/office/clock.wav'
   },
   {
-    modifier: 'alt',
-    shortcut: 'e',
+    modifier: 'shift',
+    shortcut: 'f',
     label: 'enveloppe',
     imageUrl: './assets/svgs/office/enveloppe.svg',
     audioUrl: './assets/sounds/office/enveloppe.wav'
   },
   {
     modifier: 'alt',
-    shortcut: 'r',
+    shortcut: 'g',
     label: 'keyboard',
     imageUrl: './assets/svgs/office/keyboard.svg',
     audioUrl: './assets/sounds/office/keyboard.wav'
   },
   {
-    modifier: 'alt',
-    shortcut: 't',
+    modifier: '',
+    shortcut: '',
     label: 'paperclip',
     imageUrl: './assets/svgs/office/paperclip.svg',
     audioUrl: './assets/sounds/office/paperclip.wav'
@@ -374,36 +374,36 @@ export const ACTIONS: Action[] = [
 /* RECREATION */
 
   {
-    modifier: 'alt',
-    shortcut: 'q',
+    modifier: 'ctrl',
+    shortcut: 'r',
     label: 'baseball',
     imageUrl: './assets/svgs/recreation/baseball.svg',
     audioUrl: './assets/sounds/recreation/baseball.wav'
   },
   {
     modifier: 'alt',
-    shortcut: 's',
+    shortcut: 'r',
     label: 'basketball',
     imageUrl: './assets/svgs/recreation/basketball.svg',
     audioUrl: './assets/sounds/recreation/basketball.wav'
   },
   {
-    modifier: 'alt',
+    modifier: 'shift',
     shortcut: 'd',
     label: 'cards',
     imageUrl: './assets/svgs/recreation/cards.svg',
     audioUrl: './assets/sounds/recreation/cards.wav'
   },
   {
-    modifier: 'alt',
-    shortcut: 'f',
+    modifier: 'shift',
+    shortcut: 'g',
     label: 'darts',
     imageUrl: './assets/svgs/recreation/darts.svg',
     audioUrl: './assets/sounds/recreation/darts.wav'
   },
   {
-    modifier: 'alt',
-    shortcut: 'g',
+    modifier: '',
+    shortcut: '',
     label: 'dice',
     imageUrl: './assets/svgs/recreation/dice.svg',
     audioUrl: './assets/sounds/recreation/dice.wav'

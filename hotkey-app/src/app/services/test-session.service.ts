@@ -6,7 +6,7 @@ import { ActionsService } from './actions.service';
 import { Action } from '../static/action';
 import { Result } from '../static/result';
 
-const maxAction = 4;
+const maxAction = 20;
 const startSessionUrl = '/log/session';
 const logActionUrl = '/log/action';
 
@@ -76,6 +76,16 @@ export class TestSessionService {
   getActionSet(): void {
     this.actionsService.getMenus().then(menus => {
       for (let i=0; i <menus.length; i++) {
+        var actions = menus[i].actions 
+        var final_actions = []
+
+        for (let j=0; j<actions.length; j++) {
+          if(actions[j].modifier != "alt") {
+            final_actions.push(actions[j])
+          }
+        }
+
+        console.log(final_actions)
         this.actionSet = this.actionSet.concat(menus[i].actions);
       }
     });
