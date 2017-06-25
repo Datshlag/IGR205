@@ -6,7 +6,7 @@ import { ActionsService } from './actions.service';
 import { Action } from '../static/action';
 import { Result } from '../static/result';
 
-const maxAction = 20;
+const maxAction = 50;
 const startSessionUrl = '/log/session';
 const logActionUrl = '/log/action';
 
@@ -14,6 +14,7 @@ const logActionUrl = '/log/action';
 export class TestSessionService {
   private hotkeyModeSource: BehaviorSubject<string> = new BehaviorSubject("classic");
   hotkeyMode$ = this.hotkeyModeSource.asObservable();
+  modeName: string = "classic";
   isStarted: boolean = false;
   waitingNext: boolean;
   actionSet: Action[] = [];
@@ -29,7 +30,10 @@ export class TestSessionService {
   currentLogs: Result[];
 
   constructor(private actionsService: ActionsService,
-             private http: Http) { }
+      private http: Http) {
+      this.hotkeyMode$.subscribe(next => {console.log(next);
+          this.modeName = next});
+  }
 
   changeHotkeyMode(mode): void {
     this.hotkeyModeSource.next(mode);
@@ -45,7 +49,7 @@ export class TestSessionService {
     this.updateCurrentAction();
 
     // Post method to notify server of starting session and get session ID
-    this.http.post(startSessionUrl, {}).subscribe(
+    this.http.post(startSessionUrl, {method: this.modeName}).subscribe(
       data => {
         let id = data.json().id;
         this.currentSessionId = id;
@@ -98,15 +102,14 @@ export class TestSessionService {
   answer(action): void  {
     this.logResult(action);
     if(action === this.currentAction) {
-      this.actionCount += 1;
-      this.updateCurrentAction();
-      if (!this.checkEnd()) {
-        this.waitingNext = true;
-        this.showAlert('correct');
-      }
+      this.showAlert('correct');
     } else {
-      this.waitingNext = true;
       this.showAlert('wrong');
+    }
+    this.actionCount += 1;
+    this.updateCurrentAction();
+    if (!this.checkEnd()) {
+      this.waitingNext = true;
     }
   }
 
@@ -120,7 +123,7 @@ export class TestSessionService {
     let d = new Date();
     this.currentResult.time = d.getTime() - this.actionStartDate.getTime();
 
-    // Logging the action answered and its correctness
+// Logging the action answered and its correctness
     // TODO: IMPLEMENT ACTION ID
     this.currentResult.actionId = 0;
     this.currentResult.correctAnswer = action === this.currentAction;
@@ -151,8 +154,8 @@ export class TestSessionService {
   }
 
   showAlert(alertType: string): void {
-    setTimeout(() => {this.alertType = alertType;}, 400);
-    setTimeout(() => {this.alertType = undefined;}, 3000);
+    this.alertType = alertType;
+    setTimeout(() => {this.alertType = undefined;}, 1000);
   }
 
   // Methods called by component to update the result details

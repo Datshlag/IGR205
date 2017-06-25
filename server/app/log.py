@@ -1,5 +1,5 @@
 from flask import Flask, request, make_response, jsonify, abort, send_file, send_from_directory
-import os, base64, sys, json
+import os, base64, sys, json, statistics
 
 from app import db, app
 from app.models import User, Session, Action
@@ -31,8 +31,8 @@ def spa():
 
 @app.route("/log/action", methods=['POST'])
 def action():
-    print("got action")
     data = request.get_json(force=True)
+    print(data)
     result = data["result"]
     newAction = Action(result["sessionId"], result["time"], result["actionId"],
                        result["correctAnswer"], result["hotkeyUsed"],
@@ -43,12 +43,30 @@ def action():
     db.session.commit()
     return "{}"
 
-@app.route("/methodsEfficiency")
-def efficiency():
+@app.route("/sessions")
+def sessions():
+    users = User.query.all()
+    for user in users:
+        if len(user.sessions) > 0:
+            # We take only the first session,
+            session = user.sessions[0]
+            print(session)
+    result = {}
     return "{}"
+
+@app.route("/hotkeyUsed")
+def hotkeyUsed():
+    sessions = Session.query.all()
+    mean = statistics.mean([action.hotkeyUsed and not action.menuOpened and action.correctAnswer
+                     for session in sessions for action in session.actions])
+    means = {n: statistics.mean([action.hotkeyUsed and not action.menuOpened and action.correctAnswer for session in sessions if session.method == n for action in session.actions] or [0]) for n in range(4)}
+    result = {"all": mean}
+    return json.dumps(result)
 
 @app.route("/log/session", methods=['POST'])
 def session():
+    data = request.get_json(force=True)
+    print(data)
     cookieId = request.cookies.get("id")
     print(cookieId)
     if cookieId is None:
@@ -56,7 +74,7 @@ def session():
     user = User.query.filter(User.cookieId == cookieId).one_or_none()
     if user is None:
         abort(401)
-    session = Session(user)
+    session = Session(user, data["method"])
     db.session.add(session)
     db.session.commit()
     print(session.id)
@@ -66,6 +84,6 @@ def session():
 #Just for development, nginx will bypass it
 @app.route('/<path:path>')
 def send_js(path):
-    return send_from_directory('../hotkey-app/dist/', path)
+    return send_from_directory('../../hotkey-app/dist/', path)
 
 
