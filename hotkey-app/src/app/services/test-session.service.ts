@@ -85,12 +85,12 @@ export class TestSessionService {
 
         for (let j=0; j<actions.length; j++) {
           if(actions[j].modifier != "alt") {
-            final_actions.push(actions[j])
+            final_actions.push(actions[j]) 
           }
         }
 
         console.log(final_actions)
-        this.actionSet = this.actionSet.concat(menus[i].actions);
+        this.actionSet = this.actionSet.concat(final_actions);
       }
     });
   }
