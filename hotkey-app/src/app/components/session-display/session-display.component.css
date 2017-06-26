@@ -8,6 +8,10 @@ div {
   align-items: center;
 }
 
+#userinfo {
+  display: none;
+}
+
 .button-cornered {
   width: 100px;
   height: 100px;
@@ -78,10 +82,46 @@ div {
 }
 
 app-action {
-  transform: translate(-65px, -10%);
+  transform: translate(-65px, -8%);
   margin: auto;
 }
 
 .round-button-cornered:hover {
   opacity:1;
+}
+
+.modal {
+  transform: translate(0, 100px);
+  text-align: left;
+  text-align: justify;
+  text-justify: inter-word;
+  text-decoration-color: #fff;
+}
+
+.btn-custom {
+  border-radius: 5;
+  background-color: #1e0560;
+  border-color: #1e0560;
+}
+.btn-custom:hover,
+.btn-custom:focus,
+.btn-custom:active,
+.btn-custom.active {
+  background-color: #160448;
+  border-color: #0f0230;
+}
+.btn-custom.disabled:hover,
+.btn-custom.disabled:focus,
+.btn-custom.disabled:active,
+.btn-custom.disabled.active,
+.btn-custom[disabled]:hover,
+.btn-custom[disabled]:focus,
+.btn-custom[disabled]:active,
+.btn-custom[disabled].active,
+fieldset[disabled] .btn-custom:hover,
+fieldset[disabled] .btn-custom:focus,
+fieldset[disabled] .btn-custom:active,
+fieldset[disabled] .btn-custom.active {
+  background-color: #1e0560;
+  border-color: #1e0560;
 }

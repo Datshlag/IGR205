@@ -31,8 +31,9 @@ export class TestSessionService {
 
   constructor(private actionsService: ActionsService,
       private http: Http) {
-      this.hotkeyMode$.subscribe(next => {console.log(next);
-          this.modeName = next});
+      this.hotkeyMode$.subscribe(next => {
+        console.log(next);
+        this.modeName = next});
   }
 
   changeHotkeyMode(mode): void {

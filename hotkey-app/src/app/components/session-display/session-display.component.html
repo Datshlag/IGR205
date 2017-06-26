@@ -1,5 +1,39 @@
 <div class="session">
 
+  <button #buttonClassic type="button" style = "display: none;" class="btn btn-default" (click)="modalClassic.open()"></button>
+  <button #buttonDisabled type="button" style = "display: none;" class="btn btn-default" (click)="modalDisabled.open()"></button>
+  <button #buttonAudio type="button" style = "display: none;" class="btn btn-default" (click)="modalAudio.open()"></button>
+
+  <modal #modalClassic>
+    <modal-header [show-close]="true">
+        <h4 class="modal-title">Hey there !</h4>
+    </modal-header>
+    <modal-body>
+        Thanks for taking the time to participate to our little experiment ! Don't worry, it's no big deal, really. All you have to do is select the name of what you're going to see from the dropdown menus that will shortly appear before you. We even have some shortcuts set up just for you so that you can finish this as soon as possible !  Have fun !
+    </modal-body>
+    <modal-footer ></modal-footer>
+  </modal>
+
+  <modal #modalDisabled>
+    <modal-header [show-close]="true">
+        <h4 class="modal-title">Hey there !</h4>
+    </modal-header>
+    <modal-body>
+        Thanks for taking the time to participate to our little experiment ! Don't worry, it's no big deal, really. All you have to do is find the name of what you're going to see from the dropdown menus that will shortly appear before you, and use the specified shortcut to validate your choice. Have fun !
+    </modal-body>
+    <modal-footer ></modal-footer>
+  </modal>
+
+  <modal #modalAudio>
+    <modal-header [show-close]="true">
+        <h4 class="modal-title">Hey there !</h4>
+    </modal-header>
+    <modal-body>
+        Thanks for taking the time to participate to our little experiment ! Don't worry, it's no big deal, really. All you have to do is select the name of what you're going to see from the dropdown menus that will shortly appear before you. We even have some shortcuts set up just for you so that you can finish this as soon as possible !  Oh and if you here a weird voice, don't creep out ! I can (almost) guarantee you that there are no ghost behind you ! It's probably just our feedback system announcing what you chose. Have fun !
+    </modal-body>
+    <modal-footer ></modal-footer>
+  </modal>
+
   <div *ngIf="testSessionService.alertType === 'correct'"
     class="alert alert-success" role="alert">
     <button type="button" class="close"
@@ -37,4 +71,3 @@
       <button (click)="startNext()" class="next-button-centered">NEXT</button>
   </div>
 </div>
-
