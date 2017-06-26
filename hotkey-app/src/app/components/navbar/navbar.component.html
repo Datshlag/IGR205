@@ -17,7 +17,7 @@
                   [ngClass]="{active: hotkeyMode === mode}">
                   <a *ngIf="showMode(mode)" class="modeButton">{{mode}}</a>
                 </li>
-              <li (click)="onRandomizeClick()"><a class="modeButton">Randomize</a></li>
+              <li *ngIf="showMode(mode)" (click)="onRandomizeClick()"><a class="modeButton">Randomize</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
               <li (click)="toggleUserMode()">

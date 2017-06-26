@@ -59,8 +59,8 @@ def hotkeyUsed():
     sessions = Session.query.all()
     mean = statistics.mean([action.hotkeyUsed and not action.menuOpened and action.correctAnswer
                      for session in sessions for action in session.actions])
-    means = {n: statistics.mean([action.hotkeyUsed and not action.menuOpened and action.correctAnswer for session in sessions if session.method == n for action in session.actions] or [0]) for n in range(4)}
-    result = {"all": mean}
+    means = {n: statistics.mean([action.hotkeyUsed and not action.menuOpened and action.correctAnswer for session in sessions if session.method == n for action in session.actions] or [0]) for n in ['normal', 'blocked', 'sound']}
+    result = {"all": mean, **means}
     return json.dumps(result)
 
 @app.route("/log/session", methods=['POST'])
