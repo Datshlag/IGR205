@@ -7,6 +7,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ActionsService } from './services/actions.service';
 import { TestSessionService } from './services/test-session.service';
 
+import { Ng2Bs3ModalModule } from 'ng2-bs3-modal/ng2-bs3-modal';
 import { AppComponent } from './app.component';
 import { MenuBarComponent } from './components/menubar/menubar.component';
 import { ActionComponent } from './components/action/action.component';
@@ -28,6 +29,7 @@ import { AudioComponent } from './components/audio/audio.component';
     AudioComponent
   ],
   imports: [
+    Ng2Bs3ModalModule,
     BrowserModule,
     FormsModule,
     HttpModule,
